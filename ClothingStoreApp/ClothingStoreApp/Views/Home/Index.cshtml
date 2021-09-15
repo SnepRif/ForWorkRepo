@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Тут отрабатывает инициализатор";
+}
+
+<div>
+    <h3>"Super clothes store"</h3>
+    <table>
+        <tr>
+            <td><p>Название бренда</p></td>
+            <td><p>Вид изделия</p></td>
+            <td><p>Размер</p></td>
+            <td><p>Цена</p></td>
+            <td></td>
+        </tr>
+        @foreach (var c in ViewBag.Clothes)
+        {
+            <tr>
+                <td><p>@c.BrandName</p></td>
+                <td><p>@c.KindOf</p></td>
+                <td><p>@c.Size</p></td>
+                <td><p>@c.Price</p></td>
+                <td><p><a href="/Home/Buy/@c.Id">Купить</a></p></td>
+            </tr>
+        }
+    </table>
+</div>
+
