@@ -13,12 +13,30 @@ namespace ClothingStoreApp.Controllers
             ViewBag.Clothes = clothes;
             return View();
         }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Clothes clothes)
+        {
+            db.Clothes.Add(clothes);
+            db.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+
         [HttpGet]
         public ActionResult Buy(int id)
         {
             ViewBag.Id = id;
             return View();
         }
+        [HttpPost]
         public string Buy(Purchase purchase)
         {
             purchase.Date = DateTime.Now;
@@ -41,5 +59,7 @@ namespace ClothingStoreApp.Controllers
 
             return View();
         }
+
+       
     }
 }

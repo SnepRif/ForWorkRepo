@@ -1,25 +1,24 @@
 ﻿
 @{
-    ViewBag.Title = "Buy";
+    ViewBag.Title = "Покупка";
 }
 
     <div>
-        <h3>Оформление покупки</h3>
+        <h2>Покупка</h2>
         <form method="post">
-            <input type="hidden" value="@ViewBag.GameId" name="Id" />
+            <input type="hidden" value="@ViewBag.Id" name="ClothesId" />
             <table>
                 <tr>
-                    <td><p>Введите имя</p></td>
-                    <td><input type="text" name="Person" /></td>
+                    <td>Введите своё имя</td>
+                    <td><input type="text" name="Person" placeholder="Иван" /></td>
                 </tr>
                 <tr>
-                    <td><p>Введите адрес </p></td>
-                    <td>
-                        <input type="text" name="Address" />
-
-                    </td>
+                    <td>Введите адрес</td>
+                    <td><input type="text" name="Address" placeholder="Мира 100" /></td>
                 </tr>
-                <tr><td><input type="submit" value="Отправить" /></td></tr>
+                <tr>
+                    <td><input type="submit" value="Отправить" /></td>
+                </tr>
             </table>
         </form>
     </div>

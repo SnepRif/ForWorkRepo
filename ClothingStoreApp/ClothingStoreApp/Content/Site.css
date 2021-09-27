@@ -1,6 +1,18 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+   
+}
+
+td{
+    padding-left:30px;
+    padding-right:30px;
+}
+th {
+    text-align: center;
+}
+tr{
+    text-align:center;
 }
 
 /* Set padding to keep content from hitting the edges */

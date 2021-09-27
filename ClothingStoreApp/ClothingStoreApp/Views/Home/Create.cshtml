@@ -1,0 +1,55 @@
+﻿@model ClothingStoreApp.Models.Clothes
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Добавьте в наш ассортимент что-то своё!</h2>
+
+<div>
+    <form method="post">
+        <label for="BrandName"> Название бренда</label>
+        <input type="text" id="BrandName" name="BrandName" />
+
+        <br><br>
+
+        <label for="KindOf">Наименование одежды</label>
+        <select id="KindOf" name="KindOf">
+            <option value="T-Shirt">T-Shirt</option>
+            <option value="Pants">Pants</option>
+            <option value="Sneakers">Sneakers</option>
+            <option value="Jacket">Jacket</option>
+            <option value="Polo">Polo</option>
+        </select>
+
+        <br><br>
+
+        <label for="Size">Размер одежды</label>
+        <label for="XS">XS</label>
+        <input type="radio" value="XS" id="XS" name="Size" />
+        <label for="S">S</label>
+        <input type="radio" value="S" id="S" name="Size" />
+        <label for="M">M</label>
+        <input type="radio" value="M" id="M" name="Size" />
+        <label for="L">L</label>
+        <input type="radio" value="L" id="L" name="Size" />
+        <label for="XL">XL</label>
+        <input type="radio" value="XL" id="XL" name="Size" />
+
+        <br><br>
+
+        <label for="Price"> Стоимость </label>
+        <input type="number" id="Price" name="Price" />
+
+        <br><br>
+
+        <input type="reset" />
+
+        <br><br>
+
+        <input type="submit" />
+
+
+    </form>
+</div>
+
