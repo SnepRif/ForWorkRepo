@@ -29,6 +29,41 @@ namespace ClothingStoreApp.Controllers
             return RedirectToAction("Index");
         }
 
+        //public ActionResult Delete(int id)
+        //{
+        //    var cloth = db.Clothes.Find(id);
+        //    if (book != null)
+        //    {
+        //        db.Clothes.Remove(book);
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
+        [HttpGet]
+        public ActionResult Delete(int id)
+        {
+            ViewBag.Id = id;
+            var cloth = db.Clothes.Find(id);
+            if (cloth == null)
+            {
+                return HttpNotFound();
+            }
+            return View(cloth);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var c = db.Clothes.Find(id);
+            if (c == null)
+            {
+                return HttpNotFound();
+            }
+            db.Clothes.Remove(c);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
         [HttpGet]
         public ActionResult Buy(int id)
@@ -36,6 +71,12 @@ namespace ClothingStoreApp.Controllers
             ViewBag.Id = id;
             return View();
         }
+
+        /// <summary>
+        /// Метод осущ. покупку предмета одежды
+        /// </summary>
+        /// <param name="purchase">сущ. покупки</param>
+        /// <returns></returns>
         [HttpPost]
         public string Buy(Purchase purchase)
         {
@@ -60,6 +101,6 @@ namespace ClothingStoreApp.Controllers
             return View();
         }
 
-       
+
     }
 }

@@ -1,0 +1,25 @@
+﻿@model ClothingStoreApp.Models.Clothes
+
+@{
+    ViewBag.Title = "Удаление";
+}
+
+<h2>Удаление предмета</h2>
+<form method="post">
+    <input type="hidden" value="@ViewBag.Id" name="ClothesId" />
+    <br><br>
+    <table>
+        <tr>
+            <th>Название бренда</th>
+            <th>Вид изделия</th>
+            <th>Размер</th>
+            <th>Цена</th>
+        </tr>
+        <tr>
+            <td>@Model.BrandName</td>
+            <td>@Model.KindOf</td>
+            <td>@Model.Size</td>
+            <td>@Model.Price</td>
+        </tr>
+    </table>
+</form>
