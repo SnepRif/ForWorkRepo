@@ -1,0 +1,26 @@
+﻿@model ClothingStoreApp.Models.Clothes
+
+@{
+    ViewBag.Title = "Редактировать";
+}
+
+<div>
+    <h2> Вещь номер @Model.ClothesId</h2>
+    <form method="post">
+        <input type="hidden" value="@Model.ClothesId" name="ClothesId" />
+        Название бренда
+        <input type="text" name="BrandName" value="@Model.BrandName" />
+        <br><br>
+        Наименование одежды
+        <input type="text" name="KindOf" value="@Model.KindOf"/>
+        <br><br>
+        Размер
+        <input type="text" name="Size" value="@Model.Size"/>
+        <br><br>
+        Цена
+        <input type="number" name="Price" value="@Model.Price" min="1" max="300" placeholder="@Model.Price"/>
+        <br><br>
+        <input type="submit" value="Редактировать" />
+    </form>
+</div>
+

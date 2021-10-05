@@ -1,5 +1,6 @@
 ﻿using ClothingStoreApp.Models;
 using System;
+using System.Data.Entity;
 using System.Web.Mvc;
 
 namespace ClothingStoreApp.Controllers
@@ -42,7 +43,7 @@ namespace ClothingStoreApp.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            ViewBag.Id = id;
+            //ViewBag.Id = id;
             var cloth = db.Clothes.Find(id);
             if (cloth == null)
             {
@@ -64,6 +65,28 @@ namespace ClothingStoreApp.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return HttpNotFound();
+            }
+            var clothes = db.Clothes.Find(id);
+            if (clothes != null)
+            {
+                return View(clothes);
+            }
+            return HttpNotFound();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Clothes clothes)
+        {
+            db.Entry(clothes).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
         [HttpGet]
         public ActionResult Buy(int id)
