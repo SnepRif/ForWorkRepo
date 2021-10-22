@@ -9,5 +9,7 @@ namespace ClothingStoreApp.Models
         public int ClothesId { get; set; }
         public string Address { get; set; }
         public DateTime Date { get; set; }
+
+       
     }
 }

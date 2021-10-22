@@ -1,4 +1,7 @@
-﻿namespace ClothingStoreApp.Models
+﻿using System.Collections;
+using System.Collections.Generic;
+
+namespace ClothingStoreApp.Models
 {
     public class Clothes
     {
@@ -7,6 +10,8 @@
         public string KindOf { get; set; }
         public string Size { get; set; }
         public decimal Price { get; set; }
-        
+
+       
+
     }
 }
