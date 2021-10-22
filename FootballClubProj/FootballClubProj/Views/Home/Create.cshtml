@@ -1,0 +1,40 @@
+﻿@model FootballClubProj.Models.Player
+
+@{
+    ViewBag.Title = "Create";
+
+}
+
+<h2>Футболист</h2>
+@using (Html.BeginForm())
+{
+    <p>
+        Имя <br />
+        @Html.EditorFor(model => model.Name)
+    </p>
+    <p>
+        Позиция <br />
+        @Html.EditorFor(model => model.Position)
+    </p>
+    <p>
+        Возраст<br />
+        @Html.EditorFor(model=>model.Age)
+    </p>
+    <p>
+        Команда <br />
+        @Html.DropDownListFor(model => model.TeamId, ViewBag.Teams as SelectList)
+    </p>
+    <p>
+        <input type="submit" value="Добавить игрока" />
+    </p>
+    <p>
+        <input type="reset" />
+    </p>
+    <div>
+        @Html.ActionLink("К списку игроков", "Index")
+    </div>
+}
+
+
+
+

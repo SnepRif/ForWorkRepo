@@ -1,0 +1,39 @@
+﻿@model FootballClubProj.Models.Player
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm())
+{
+    <h2>Редактирование</h2>
+
+    @Html.HiddenFor(model => model.Id)
+    <p>
+        Имя <br />
+        @Html.EditorFor(model => model.Name)
+    </p>
+    <p>
+        Позиция <br />
+        @Html.EditorFor(model => model.Position)
+    </p>
+    <p>
+        Возраст<br />
+        @Html.EditorFor(model => model.Age)
+    </p>
+    <p>
+        Команда <br />
+        @Html.DropDownListFor(model => model.TeamId, ViewBag.Teams as SelectList)
+    </p>
+    <p>
+        <input type="submit" value="Редактировать" />
+    </p>
+    <p>
+        <input type="reset" />
+    </p>
+    <div>
+        @Html.ActionLink("К списку игроков", "Index")
+    </div>
+}
+
