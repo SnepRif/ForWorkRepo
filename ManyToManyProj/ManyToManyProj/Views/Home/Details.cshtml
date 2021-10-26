@@ -1,0 +1,25 @@
+﻿@model ManyToManyProj.Models.Student
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <p>
+       Имя : @Model.Name 
+    </p>
+    <p>
+        Фамилия : @Model.Surname
+    </p>
+    <ul>
+        
+            Курсы : @foreach (var s in Model.Courses)
+            {
+               <li>@s.Name</li>
+            }
+       
+    </ul>
+</div>
+
