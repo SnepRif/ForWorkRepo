@@ -1,37 +1,46 @@
-﻿@{
+﻿@model ClothingStoreApp.Models.IndexModels
+
+@using ClothingStoreApp.Helpers;
+@{
     ViewBag.Title = "Тут отрабатывает инициализатор";
 }
 
-    <html>
-    
-        <head>
-            <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
-        </head>
-        
-        <body>
-            <h3>"Super clothes store"</h3>
-            <table border="3">
-                <tr>
-                    <th>Название бренда</th>
-                    <th>Вид изделия</th>
-                    <th>Размер</th>
-                    <th>Цена</th>
-                    <th></th>
-                </tr>
-                @foreach (var c in ViewBag.Clothes)
-                {
-                    <tr>
-                        <td>@c.BrandName</td>
-                        <td>@c.KindOf</td>
-                        <td>@c.Size</td>
-                        <td>@c.Price</td>
-                        <td><a href="/Home/Buy/@c.ClothesId">Купить</a>|<a href="/Home/Delete/@c.ClothesId">Удалить</a>|
-                        <a href="/Home/Edit/@c.ClothesId">Изменить</a></td>
+<html>
 
-                    </tr>
-                }
-            </table>
-        </body>
-    
-    </html>
+<head>
+    <link rel="stylesheet" type="text/css" href="~/Content/Site.css" />
+</head>
+
+<body>
+    <h3>"Super clothes store"</h3>
+    <table border="3">
+        <tr>
+            <th>Название бренда</th>
+            <th>Вид изделия</th>
+            <th>Размер</th>
+            <th>Цена</th>
+            <th></th>
+        </tr>
+        @foreach (var c in Model.Clothes)
+        {
+            <tr>
+                <td>@c.BrandName</td>
+                <td>@c.KindOf</td>
+                <td>@c.Size</td>
+                <td>@c.Price</td>
+                <td>
+                    <a href="/Home/Buy/@c.ClothesId">Купить</a>|<a href="/Home/Delete/@c.ClothesId">Удалить</a>|
+                    <a href="/Home/Edit/@c.ClothesId">Изменить</a>
+                </td>
+
+            </tr>
+        }
+    </table>
+    <br />
+    <div class="btn-group">
+        @Html.PageLinks(Model.PageInfo, x => Url.Action("Index", new { page = x }))
+    </div>
+</body>
+
+</html>
 

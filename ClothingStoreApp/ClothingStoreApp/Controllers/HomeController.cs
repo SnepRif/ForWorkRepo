@@ -1,6 +1,8 @@
 ﻿using ClothingStoreApp.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace ClothingStoreApp.Controllers
@@ -8,11 +10,14 @@ namespace ClothingStoreApp.Controllers
     public class HomeController : Controller
     {
         ClothesAppDbContext db = new ClothesAppDbContext();
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
-            var clothes = db.Clothes;
-            ViewBag.Clothes = clothes;
-            return View();
+            //ViewBag.Clothes = db.Clothes;
+            int pageSize = 3; // количество объектов на страницу
+            IEnumerable<Clothes> clothesPerPage = db.Clothes.OrderBy(x=>x.ClothesId).Skip((page - 1) * pageSize).Take(pageSize);
+            PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = db.Clothes.Count() };
+            IndexModels indexModels = new IndexModels { PageInfo = pageInfo, Clothes = clothesPerPage };
+            return View(indexModels);
         }
 
         [HttpGet]
