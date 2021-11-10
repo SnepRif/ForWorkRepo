@@ -10,11 +10,17 @@ namespace ClothingStoreApp.Controllers
     public class HomeController : Controller
     {
         ClothesAppDbContext db = new ClothesAppDbContext();
+
+        [Route("{id:int}/{name:string}")]
+        public string Test(int id, string name)
+        {
+            return id.ToString() + "" + name;
+        }
         public ActionResult Index(int page = 1)
         {
             //ViewBag.Clothes = db.Clothes;
             int pageSize = 3; // количество объектов на страницу
-            IEnumerable<Clothes> clothesPerPage = db.Clothes.OrderBy(x=>x.ClothesId).Skip((page - 1) * pageSize).Take(pageSize);
+            IEnumerable<Clothes> clothesPerPage = db.Clothes.OrderBy(x => x.ClothesId).Skip((page - 1) * pageSize).Take(pageSize);
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = db.Clothes.Count() };
             IndexModels indexModels = new IndexModels { PageInfo = pageInfo, Clothes = clothesPerPage };
             return View(indexModels);

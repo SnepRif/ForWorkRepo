@@ -13,6 +13,13 @@ namespace ClothingStoreApp
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Default 2",
+            //    url: "{id}/{name}",
+            //    defaults: new { controller = "Home", action = "Test" },
+            //    constraints: new { id = "\\d+" }
+            //    );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
