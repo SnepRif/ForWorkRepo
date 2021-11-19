@@ -35,10 +35,14 @@ namespace ClothingStoreApp.Controllers
         [HttpPost]
         public ActionResult Create(Clothes clothes)
         {
-            db.Clothes.Add(clothes);
-            db.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                db.Clothes.Add(clothes);
+                db.SaveChanges();
 
-            return RedirectToAction("Index");
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
         //public ActionResult Delete(int id)

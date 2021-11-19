@@ -8,12 +8,19 @@
 
 <div>
     <form method="post">
+
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <label for="BrandName"> Название бренда</label>
         <input type="text" id="BrandName" name="BrandName" />
+        @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
 
         <br><br>
 
+
         <label for="KindOf">Наименование одежды</label>
+        @Html.ValidationMessageFor(model => model.KindOf, "", new { @class = "text-danger" })
         <select id="KindOf" name="KindOf">
             <option value="T-Shirt">T-Shirt</option>
             <option value="Pants">Pants</option>
@@ -22,7 +29,9 @@
             <option value="Polo">Polo</option>
         </select>
 
+
         <br><br>
+
 
         <label for="Size">Размер одежды</label>
         <label for="XS">XS</label>
@@ -35,11 +44,14 @@
         <input type="radio" value="L" id="L" name="Size" />
         <label for="XL">XL</label>
         <input type="radio" value="XL" id="XL" name="Size" />
+        @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
 
         <br><br>
 
+
         <label for="Price"> Стоимость </label>
         <input type="number" id="Price" name="Price" />
+        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
 
         <br><br>
 
@@ -52,4 +64,8 @@
 
     </form>
 </div>
+
+@*@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
 
