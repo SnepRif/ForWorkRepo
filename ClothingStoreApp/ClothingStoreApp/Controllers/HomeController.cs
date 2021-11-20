@@ -1,4 +1,5 @@
-﻿using ClothingStoreApp.Models;
+﻿using ClothingStoreApp.Filters;
+using ClothingStoreApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace ClothingStoreApp.Controllers
 {
+    [Log]
     public class HomeController : Controller
     {
         ClothesAppDbContext db = new ClothesAppDbContext();
@@ -16,6 +18,7 @@ namespace ClothingStoreApp.Controllers
         {
             return id.ToString() + "" + name;
         }
+
         public ActionResult Index(int page = 1)
         {
             //ViewBag.Clothes = db.Clothes;
@@ -24,6 +27,14 @@ namespace ClothingStoreApp.Controllers
             PageInfo pageInfo = new PageInfo { PageNumber = page, PageSize = pageSize, TotalItems = db.Clothes.Count() };
             IndexModels indexModels = new IndexModels { PageInfo = pageInfo, Clothes = clothesPerPage };
             return View(indexModels);
+        }
+
+        public ActionResult Log()
+        {
+            var visitors = db.Visitors.ToList();
+            //visitors = db.Visitors.ToList();
+
+            return View(visitors);
         }
 
         [HttpGet]

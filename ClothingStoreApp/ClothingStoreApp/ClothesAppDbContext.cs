@@ -7,6 +7,8 @@ namespace ClothingStoreApp
     {
         public DbSet<Clothes> Clothes { get; set; }
         public DbSet<Purchase> Purchases { get; set; }
+        public DbSet<Visitor> Visitors { get; set; }
+
 
     }
 
@@ -25,7 +27,7 @@ namespace ClothingStoreApp
             db.Clothes.Add(new Clothes { BrandName = "Crosby", KindOf = "Boots", Price = 99.99m, Size = "11" });
             db.Clothes.Add(new Clothes { BrandName = "Reebok", KindOf = "Shorts", Price = 15, Size = "S" });
             db.Clothes.Add(new Clothes { BrandName = "Anteather", KindOf = "Jacket", Price = 56, Size = "M" });
-           
+
 
 
             base.Seed(db);
