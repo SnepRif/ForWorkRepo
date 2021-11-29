@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
+﻿using ClothingStoreApp.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using ClothingStoreApp.Models;
+using System;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Net.Mail;
 
 namespace ClothingStoreApp
 {
@@ -18,8 +15,27 @@ namespace ClothingStoreApp
     {
         public Task SendAsync(IdentityMessage message)
         {
-            // Подключите здесь службу электронной почты для отправки сообщения электронной почты.
-            return Task.FromResult(0);
+            //настройка логина отправителя
+            var from = "Riff96@yandex.ru";
+            var pass = "rehjcfrbbxbuj";
+
+            //адрес и порт Smtp сервера, с которого отправ. письмо
+            SmtpClient client = new SmtpClient("smtp.yandex.ru", 25);
+
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential(from, pass);
+            client.EnableSsl = true;
+
+            // создаём письмо 
+            var mail = new MailMessage(from, message.Destination);
+            mail.Subject = message.Subject;
+            mail.Body = message.Body;
+            mail.IsBodyHtml = true;
+
+            return client.SendMailAsync(mail);
+
+
         }
     }
 
@@ -40,7 +56,7 @@ namespace ClothingStoreApp
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Настройка логики проверки имен пользователей
@@ -81,7 +97,7 @@ namespace ClothingStoreApp
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
