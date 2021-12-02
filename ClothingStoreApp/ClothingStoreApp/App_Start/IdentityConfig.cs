@@ -17,7 +17,7 @@ namespace ClothingStoreApp
         {
             //настройка логина отправителя
             var from = "Riff96@yandex.ru";
-            var pass = "rehjcfrbbxbuj";
+            var pass = "uairesfnocikkhbr";
 
             //адрес и порт Smtp сервера, с которого отправ. письмо
             SmtpClient client = new SmtpClient("smtp.yandex.ru", 25);
